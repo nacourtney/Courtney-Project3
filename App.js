@@ -3,10 +3,7 @@ import {
   StyleSheet,
   Text,
   TextInput,
-  TouchableOpacity,
   View,
-  Button,
-  ScrollView,
   Pressable,
   SafeAreaView,
 } from "react-native";
@@ -47,6 +44,11 @@ export default class App extends Component {
     this.setState({ results });
   };
 
+  oneLineNames = function (props) {
+    let dataArray = props.split(",").map((item) => item.trim());
+    return dataArray.join("\n");
+  };
+
   render() {
     const { results } = this.state;
     const buttons = letters.map((letter, index) => {
@@ -61,9 +63,7 @@ export default class App extends Component {
             onPress={this.onLoad}
             title={letter.letter}
           >
-            <Text>
-              {letter.letter} ({index})
-            </Text>
+            <Text>{letter.letter}</Text>
           </Pressable>
         </SafeAreaView>
       );
@@ -74,13 +74,12 @@ export default class App extends Component {
         <View>
           <TextInput
             style={styles.preview}
-            value={results}
+            value={this.oneLineNames(results)}
             placeholder="Results..."
             editable={false}
             multiline
           />
         </View>
-
         <View>{buttons}</View>
       </View>
     );
