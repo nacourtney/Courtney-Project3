@@ -8,6 +8,7 @@ import {
   Button,
   ScrollView,
   Pressable,
+  SafeAreaView,
 } from "react-native";
 
 const letters = [
@@ -50,18 +51,21 @@ export default class App extends Component {
     const { results } = this.state;
     const buttons = letters.map((letter, index) => {
       return (
-        <Pressable
-          onPressIn={() => this.setState({ selectedLetterIndex: index })}
-          buttonStyle={styles.button}
-          key={letters.letter}
-          onPress={this.onLoad}
-          title={letter.letter}
-        >
+        <SafeAreaView>
           <Text>{this.dynamicLabels(letter.letter)}</Text>
-          <Text>
-            {letter.letter} ({index})
-          </Text>
-        </Pressable>
+          <Pressable
+            style={styles.buttonLayout.buttonContainer}
+            onPressIn={() => this.setState({ selectedLetterIndex: index })}
+            buttonStyle={styles.buttonLayout}
+            key={letters.letter}
+            onPress={this.onLoad}
+            title={letter.letter}
+          >
+            <Text>
+              {letter.letter} ({index})
+            </Text>
+          </Pressable>
+        </SafeAreaView>
       );
     });
 
@@ -76,6 +80,7 @@ export default class App extends Component {
             multiline
           />
         </View>
+
         <View>{buttons}</View>
       </View>
     );
@@ -99,6 +104,27 @@ const styles = StyleSheet.create({
     marginBottom: 50,
   },
   button: {
-    margin: 15,
+    margin: 0,
+    backgroundColor: "deeppink",
+  },
+  buttonLayout: {
+    container: {
+      flexDirection: "row",
+      alignItems: "center",
+    },
+    buttonContainer: {
+      backgroundColor: "dodgerblue",
+      padding: 10,
+      marginBottom: 10,
+      alignItems: "center",
+      height: 45,
+    },
+  },
+  labelContainer: {
+    backgroundColor: "deeppink",
+    padding: 20,
+    marginBottom: 15,
+    alignItems: "center",
+    height: 15,
   },
 });
