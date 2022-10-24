@@ -3,13 +3,9 @@ import {
   StyleSheet,
   Text,
   TextInput,
-  TouchableOpacity,
   View,
-  Button,
-  ScrollView,
   Pressable,
   SafeAreaView,
-  TabBarIOSItem,
 } from "react-native";
 
 const letters = [
@@ -50,7 +46,6 @@ export default class App extends Component {
 
   oneLineNames = function (props) {
     let dataArray = props.split(",").map((item) => item.trim());
-
     return dataArray.join("\n");
   };
 
