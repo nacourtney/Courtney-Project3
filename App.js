@@ -45,17 +45,15 @@ export default class App extends Component {
   };
 
   oneLineNames = function (props) {
-    let dataArray = props.split(",").map((item) => item.trim());
-    return dataArray.join("\n");
+    let stringProp = JSON.stringify(props);
+    var cleanProps = stringProp.replace(/\[/g, "");
+    var cleanProps = cleanProps.replace(/\]/g, "");
+    var cleanProps = cleanProps.replace(/\"/g, "");
+    var cleanProps = cleanProps.replace(/\\/g, "");
+    let newLineProps = cleanProps.split(",").map((item) => item.trim());
+
+    return newLineProps.join("\n");
   };
-
-  // oneLineNames = function (props) {
-  //   let stringProp = JSON.stringify(props);
-  //   let cleanProps = stringProp.replace(/\[\]\"/g, "");
-  //   let newLineProps = cleanProps.split(",").map((item) => item.trim());
-
-  //   return newLineProps.join("\n");
-  // };
 
   render() {
     const { results } = this.state;
