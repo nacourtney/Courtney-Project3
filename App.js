@@ -49,6 +49,14 @@ export default class App extends Component {
     return dataArray.join("\n");
   };
 
+  // oneLineNames = function (props) {
+  //   let stringProp = JSON.stringify(props);
+  //   let cleanProps = stringProp.replace(/\[\]\"/g, "");
+  //   let newLineProps = cleanProps.split(",").map((item) => item.trim());
+
+  //   return newLineProps.join("\n");
+  // };
+
   render() {
     const { results } = this.state;
     const buttons = letters.map((letter, index) => {
