@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { Component, useState } from "react";
 import {
   StyleSheet,
   Text,
@@ -16,6 +16,8 @@ const letters = [
   { letter: "E" },
 ];
 
+const selectedLetter = "";
+
 const letterIndex = "";
 export default class App extends Component {
   constructor(props) {
@@ -23,6 +25,7 @@ export default class App extends Component {
     this.state = {
       selectedLetterIndex: 0,
       results: "",
+      selectedLetter: "",
     };
   }
 
@@ -57,10 +60,10 @@ export default class App extends Component {
 
   render() {
     const { results } = this.state;
+
     const buttons = letters.map((letter, index) => {
       return (
         <SafeAreaView>
-          <Text>{this.dynamicLabels(letter.letter)}</Text>
           <Pressable
             style={styles.buttonLayout.buttonContainer}
             onPressIn={() => this.setState({ selectedLetterIndex: index })}
@@ -78,6 +81,9 @@ export default class App extends Component {
     return (
       <View style={styles.container}>
         <View>
+          <Text>
+            {this.dynamicLabels(letters[this.state.selectedLetterIndex].letter)}
+          </Text>
           <TextInput
             style={styles.preview}
             value={this.oneLineNames(results)}
@@ -120,6 +126,7 @@ const styles = StyleSheet.create({
     buttonContainer: {
       backgroundColor: "dodgerblue",
       padding: 10,
+      width: 150,
       marginBottom: 10,
       alignItems: "center",
       height: 45,
